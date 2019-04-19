@@ -1,0 +1,12 @@
+#!/bin/bash
+
+if [ "$1" == "mem" ]
+  then
+    echo "Compiling MemoryGame.java"
+    javac -g MemoryGame.java BoardGUI.java MemGameLogic.java
+    echo "Running MemoryGame.jar"
+    java MemoryGame 4
+
+fi
+
+rm *.class
