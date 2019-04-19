@@ -35,6 +35,11 @@ public class BoardGUI implements ActionListener{
     boolean flippedOnce = false;
     int flippedindex = 0;
 
+    BoardGUI(String d){
+        resetEverything();
+        board = setupBoard(d);
+        helpme();
+    }
     public void setBackgrounds(){
         topPanel.setBackground(boardTheme);
         bottomPanel.setBackground(boardTheme);
@@ -56,12 +61,6 @@ public class BoardGUI implements ActionListener{
             buttonPanel.setEnabled(true);
         if(board != null)
             board.dispose();
-        helpme();
-    }
-
-    BoardGUI(String d){
-        resetEverything();
-        board = setupBoard(d);
         helpme();
     }
     public JFrame setupBoard(String d){
@@ -319,7 +318,7 @@ public class BoardGUI implements ActionListener{
         if(e.getSource().getClass().equals(JButton.class)){
             source = (JButton) e.getSource();
             if(source.getText().equals("Restart")){
-                System.out.println("you wanted to reset");
+
                 Component[] allcomps = dimButtonPanel.getComponents();
                 for(Component in : allcomps){
                     if(in.getClass().equals(JRadioButton.class)){
@@ -384,7 +383,7 @@ public class BoardGUI implements ActionListener{
         JButton buttonToChange = allcols.get(col);
         Icon picture = allbuttons.get(index).getIcon();
         Icon cardIcon = coveredButtons.get(index).getIcon();
-        System.out.println("Changed Image");
+
         buttonToChange.setIcon(picture);
 
         if( flippedOnce ) {
@@ -397,11 +396,11 @@ public class BoardGUI implements ActionListener{
                     allcols.add((JButton)in);
                 }
                 if(flippedindex == index){
-                    System.out.println("That's the same button you sneaky one");
+
                     allcols.get(flippedindex%dimension).setIcon(getCardButton().getIcon() );
                     allcols.get(flippedindex%dimension).setName(String.valueOf(index));
                 }else{
-                    System.out.println("Flipping " + flippedindex + " and " + index);
+                    System.out.println("Flipping " + flippedindex + " and " + index + " back");
                     allcols.get(flippedindex%dimension).setIcon(cardIcon);
                     buttonToChange.setIcon(cardIcon);
                 }
@@ -426,7 +425,7 @@ public class BoardGUI implements ActionListener{
          
     }
     public boolean checkForMatch(int card1, int card2){
-        System.out.println(card1 + " " + card2);
+
         if(card1 == card2){
             return false;
         }
